@@ -36,25 +36,25 @@ function read(query, callback) {
   const filters = [];
   const params = [];
 
-  // Name (LIKE)
+  // name (LIKE)
   if (query.name) {
     filters.push("name LIKE ?");
     params.push(`%${query.name}%`);
   }
 
-  // Height (=)
+  // height (=)
   if (query.height) {
     filters.push("height = ?");
     params.push(query.height);
   }
 
-  // Weight (=)
+  // weight (=)
   if (query.weight) {
     filters.push("weight = ?");
     params.push(query.weight);
   }
 
-  // Birthdate (BETWEEN, >=, <=)
+  // birthdate (BETWEEN, >=, <=)
   const start = query.startdate;
   const end = query.enddate;
   if (start && end) {
@@ -68,14 +68,15 @@ function read(query, callback) {
     params.push(end);
   }
 
-  // Married (true/false)
-  if (query.married) {
+  // married (true/false)
+  if (query.married === "true" || query.married === "false") {
     filters.push("married = ?");
-    params.push(query.married);
+    params.push(query.married === "true" ? 1 : 0);
   }
 
-  // Operator (AND / OR)
-  const operator = query.operation && query.operation.toUpperCase() === "AND" ? "AND" : "OR";
+  // operator (AND / OR)
+  const operator =
+    query.operation && query.operation.toUpperCase() === "AND" ? "AND" : "OR";
 
   if (filters.length > 0) {
     const whereClause = filters.join(` ${operator} `);
