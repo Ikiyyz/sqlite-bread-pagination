@@ -57,6 +57,7 @@ function read(query, callback) {
   // birthdate (BETWEEN, >=, <=)
   const start = query.startdate;
   const end = query.enddate;
+  
   if (start && end) {
     filters.push("birthdate BETWEEN ? AND ?");
     params.push(start, end);

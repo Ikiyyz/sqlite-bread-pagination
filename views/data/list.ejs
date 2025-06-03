@@ -52,7 +52,7 @@
                             <label class="form-label">Weight</label>
                         </div>
                         <div class="col-md-10">
-                            <input type="number" class="form-control" name="weight" placeholder="Insert weight"
+                            <input type="number" class="form-control" name="weight" step="0.1" placeholder="Insert weight"
                                 value="<%= query.weight || '' %>">
                         </div>
                     </div>
@@ -93,14 +93,14 @@
                         </div>
                         <div class="col-md-10">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="operation" value="AND"
-                                    <%=query.operation==='AND' ? 'checked' : '' %>>
-                                <label class="form-check-label">AND</label>
-                            </div>
-                            <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="operation" value="OR"
                                     <%=!query.operation || query.operation==='OR' ? 'checked' : '' %>>
                                 <label class="form-check-label">OR</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="operation" value="AND"
+                                    <%=query.operation==='AND' ? 'checked' : '' %>>
+                                <label class="form-check-label">AND</label>
                             </div>
                         </div>
                     </div>
